@@ -27,7 +27,7 @@ public class AkiEsRestApi {
 		
 		try
 		{
-			conn = ConnectionUtil.createConnection("MySQLDS", true);
+			conn = ConnectionUtil.createConnection("java:jboss/datasources/MySQLDS", true);
 			
 			JSONArray jsonArray = new JSONArray();
 			
