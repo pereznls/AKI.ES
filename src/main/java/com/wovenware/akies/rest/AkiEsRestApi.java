@@ -11,8 +11,9 @@ import net.minidev.json.JSONObject;
 @Path("/score")
 public class AkiEsRestApi {
 	@GET
-	//@Path("/{param}")
-	public Response printMessage(@PathParam("param") String msg) {
+	@Path("/{lon}/{lat}")
+	public Response printMessage(@PathParam("lon") String lon,
+			@PathParam("lat") String lat) {
  
 		JSONObject jsonObject = new JSONObject();
 		
