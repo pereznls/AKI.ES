@@ -18,7 +18,7 @@ public class DataSourceLocator {
 	
 	private Map<String, DataSource> _cache = null;
 	
-	private final String JNDI_PREFIX = "java:comp/env/";
+	private final String JNDI_PREFIX = "java:";
 	
 	private DataSourceLocator() throws Exception {
 		_cache = Collections.synchronizedMap(new HashMap<String, DataSource>());
