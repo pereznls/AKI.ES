@@ -66,6 +66,7 @@ public class AkiEsRestApi {
 			_log.severe("Failed to setup connection " + ex.getMessage());
 			
 			jsonObject.put("errorMessage", "An error has ocurred! Please try again later.");
+			jsonObject.put("errorDetails", ex.getMessage());
 		}
 		finally
 		{
