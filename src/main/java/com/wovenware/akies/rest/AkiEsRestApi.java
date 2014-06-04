@@ -25,6 +25,7 @@ public class AkiEsRestApi {
 		jsonObjectDetail = new JSONObject();
 		jsonObjectDetail.put("detail", "police");
 		jsonObjectDetail.put("score", 80);
+		jsonObjectDetail.put("description", "Police score description.");
 		
 		jsonArray.add(jsonObjectDetail);
 		
@@ -32,6 +33,7 @@ public class AkiEsRestApi {
 		jsonObjectDetail = new JSONObject();
 		jsonObjectDetail.put("detail", "school");
 		jsonObjectDetail.put("score", 40);
+		jsonObjectDetail.put("description", "School score description.");
 		
 		jsonArray.add(jsonObjectDetail);
 		
@@ -39,9 +41,12 @@ public class AkiEsRestApi {
 		jsonObjectDetail = new JSONObject();
 		jsonObjectDetail.put("detail", "hospital");
 		jsonObjectDetail.put("score", 90);
+		jsonObjectDetail.put("description", "Hospital score description.");
 		
 		jsonArray.add(jsonObjectDetail);
 		
+		jsonObject.put("score", 100);
+		jsonObject.put("description", "This is the main description.");
 		jsonObject.put("details", jsonArray);
 		
 		return Response.status(200).entity(jsonObject.toJSONString()).build();
