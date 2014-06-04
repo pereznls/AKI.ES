@@ -24,8 +24,6 @@ public class ConnectionUtil {
 				
 				try {
 					if(connection != null && !connection.isClosed()) {
-						connection.rollback();
-						
 						break;
 					}
 				} catch(Exception e) {
