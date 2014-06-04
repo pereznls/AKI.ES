@@ -5,15 +5,45 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-@Path("/rating")
+import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
+
+@Path("/score")
 public class AkiEsRestApi {
 	@GET
-	@Path("/{param}")
+	//@Path("/{param}")
 	public Response printMessage(@PathParam("param") String msg) {
  
-		String result = "Restful example : " + msg;
- 
-		return Response.status(200).entity(result).build();
+		JSONObject jsonObject = new JSONObject();
+		
+		JSONArray jsonArray = new JSONArray();
+		
+		JSONObject jsonObjectDetail = null;
+		
+		// Police
+		jsonObjectDetail = new JSONObject();
+		jsonObjectDetail.put("detail", "police");
+		jsonObjectDetail.put("score", 80);
+		
+		jsonArray.add(jsonObjectDetail);
+		
+		// Schools
+		jsonObjectDetail = new JSONObject();
+		jsonObjectDetail.put("detail", "school");
+		jsonObjectDetail.put("score", 40);
+		
+		jsonArray.add(jsonObjectDetail);
+		
+		// Hospitals
+		jsonObjectDetail = new JSONObject();
+		jsonObjectDetail.put("detail", "hospital");
+		jsonObjectDetail.put("score", 90);
+		
+		jsonArray.add(jsonObjectDetail);
+		
+		jsonObject.put("details", jsonArray);
+		
+		return Response.status(200).entity(jsonObject.toJSONString()).build();
  
 	}
  
