@@ -104,7 +104,7 @@ var AkiEsAPI = (function () {
 	}
 	
 	mod.gotoAnalysis = function() {
-		mod.getGeo(function(position) {
+		//mod.getGeo(function(position) {
 			$.getJSON(
 				"https://akies-wovenware.rhcloud.com/rest/score/1/1",
 				[position.coords.latitude, position.coords.longitude],
@@ -114,7 +114,7 @@ var AkiEsAPI = (function () {
 					mod.attachAnalysisEvents();
 				}
 			);
-		});
+		//});
 		
 		// mod.render(templates["analysis"], mod.getData());
 		// mod.runAnalysisAnim();
