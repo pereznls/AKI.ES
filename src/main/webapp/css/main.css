@@ -1,0 +1,169 @@
+
+
+/* ==========================================================================
+	Author's custom styles
+	========================================================================== */
+	
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background: url("../img/bg.jpg") no-repeat fixed;
+	background-size: cover;
+	padding: 0;
+	color: #FFF;
+}
+
+.wrapper {
+	background-color: rgba(1, 118, 165, 0.9);
+	width: 100%;
+	min-height: 100%;
+}
+
+.logo {
+	background: url("../img/logo.png") no-repeat top center;
+	width: 100%;
+	height: 284px;
+}
+
+.big {
+	font-size: 120pt;
+}
+
+.big-red-button {
+	background-color: rgba(204, 22, 79, 1);
+	color: #FFF;
+	font-size: 24pt;
+	text-transform: uppercase;
+	width: 200px;
+	height: 200px;
+	padding: 80px 0;
+	border-radius: 200px;
+}
+
+.opaque {
+	opacity: 1 !important;
+}
+
+.navbar {
+	background-color: rgba(246, 246, 246, 0.7);
+	opacity: 0;
+}
+
+.icon-bar {
+	background-color: rgba(88, 87, 93, 1);
+}
+
+.ww-logo-small {
+   background-image: url('../img/ww_small.png');
+   background-color: transparent;
+   border: 0;
+   overflow: hidden;
+   float: left;
+   width: 48px;
+   height: 48px;
+   margin: 5px 20px;
+   /* IE 6/7 fallback */
+   *text-indent: -9999px;
+}
+
+.ww-logo-small:before {
+	 content: "";
+	 display: block;
+	 width: 0;
+	 height: 150%;
+}
+
+.progress-bar {
+   background-color: #1bdb62;
+   background-image: none;
+}
+
+/* Home Page */
+
+#front-logo {
+	padding-top: 10%;
+}
+
+#app-name {
+	font-family: 'HelveticaNeueLT Pro 35 Th';
+	opacity: 0;
+}
+
+#begin-btn {
+	position: absolute;
+	left: 50%;
+	bottom: 5%;
+	margin-left: -100px;
+}
+
+/* --- */
+
+/* Score Page */
+.badge {
+   background: url('../img/badge.png') no-repeat top center;
+   color: rgba(64, 64, 64, 1);
+   width: 100%;
+   height: 270px;
+   font-family: 'ChunkFive-Roman';
+   font-size: 72pt;
+   padding: 89px 0;
+   margin-top: 15%;
+}
+
+.description {
+   font-family: 'HelveticaNeueLT Pro 65 Md';
+   font-size: 14pt;
+   text-align: justify;
+   padding: 5%;
+   opacity: 0;
+}
+
+.details {
+   margin: 0 10%;
+   opacity: 0;
+}
+
+.detail:before, .detail:after { content: ""; display: table; }
+.detail:after { clear: both; }
+.detail { zoom: 1; }
+
+.detail {
+   padding: 2% 0;
+}
+
+.icon {
+   display: block;
+   background-color: transparent;
+   background-repeat: no-repeat;
+   border: 0;
+   overflow: hidden;
+   float: left;
+   width: 100px;
+   height: 100px;
+   /* IE 6/7 fallback */
+   *text-indent: -9999px;
+}
+
+.icon:before {
+   content: "";
+   display: block;
+   width: 0;
+   height: 150%;
+}
+
+.icon-police {
+   background-image: url('../img/police_icon.png');
+}
+
+.icon-school {
+   background-image: url('../img/school_icon.png');
+}
+
+.icon-hospital {
+   background-image: url('../img/hospital_icon.png');
+}
+
+/* --- */
