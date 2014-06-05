@@ -54,7 +54,7 @@ public class GenericProcedureUtil {
 				        to.setDetail(rs.getString(2)); 
 				        to.setDescription(rs.getString(3)); 
 				        //Output message
-				        to.setResultMessage(cStmt.getString(1));
+				        to.setResultMessage(cStmt.getString(3));
 
 				    }//end while
 				}//end try
