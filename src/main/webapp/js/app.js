@@ -108,7 +108,7 @@ var AkiEsAPI = (function () {
 			$.getJSON(
 				"https://akies-wovenware.rhcloud.com/rest/score/1/1",
 				//[position.coords.latitude, position.coords.longitude],
-				[1, 2],
+				//[1, 2],
 				function(data) {
 					mod.render(templates["analysis"], data);
 					mod.runAnalysisAnim();
