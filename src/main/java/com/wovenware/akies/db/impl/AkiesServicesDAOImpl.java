@@ -70,7 +70,7 @@ public class AkiesServicesDAOImpl implements AkiesServicesDAO {
 		}//end try
 	    catch(Exception ex)
 	    {
-	    	_log.severe("Failed executing api: " + ex.getMessage());
+	    	_log.severe("Failed data access object: " + ex.getMessage() + ex.getStackTrace().toString());
 	    	throw ex;
 	    	
 	    }finally
