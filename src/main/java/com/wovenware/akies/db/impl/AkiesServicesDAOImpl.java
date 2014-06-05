@@ -38,7 +38,7 @@ public class AkiesServicesDAOImpl implements AkiesServicesDAO {
 		
 		//Get Connection from JBOSS Connection pool using JNDI
 		conn = ConnectionUtil.createConnection("jboss/datasources/MySQLDS", true);
-		boolean hadResults = false;
+		//boolean hadResults = false;
 		ScoreTO to = null;
 		
 		try
@@ -54,24 +54,22 @@ public class AkiesServicesDAOImpl implements AkiesServicesDAO {
 			cStmt.registerOutParameter(3, Types.VARCHAR);
 			
 			//Execute statement
-			hadResults = cStmt.execute();
-	
+			cStmt.execute();
+			//Get Results set
+			ResultSet rs = cStmt.getResultSet();
 		    // Process all returned result sets
-		    while (hadResults) {
+		    while (rs.next()) {
 		    	
-		        ResultSet rs = cStmt.getResultSet();
 		        to = new ScoreTO();
 		        to.setScore(46); //Dummy
 		        to.setDetail(rs.getString(2)); //Testing DB
 		        to.setDescription(rs.getString(3)); //Testing DB
-	
-		        hadResults = cStmt.getMoreResults();
+
 		    }//end while
 		}//end try
 	    catch(Exception ex)
 	    {
 	    	_log.severe("Failed data access object: " + ex.getMessage());
-	    	ex.printStackTrace();
 	    	throw ex;
 	    	
 	    }finally
@@ -90,8 +88,7 @@ public class AkiesServicesDAOImpl implements AkiesServicesDAO {
 	    	
 	    }
 		
-		conn.close();
-		
+		//If result is empty is going to return null
 		return to;
 	}
 
