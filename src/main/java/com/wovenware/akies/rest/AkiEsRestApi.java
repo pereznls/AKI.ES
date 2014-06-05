@@ -83,7 +83,7 @@ public class AkiEsRestApi {
 			}			
 		}
 		
-		return Response.status(200).entity(jsonObject.toJSONString()).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(jsonObject.toJSONString()).build();
  
 	}
  
