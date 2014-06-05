@@ -1,6 +1,5 @@
 package com.wovenware.akies.rest;
 
-import java.sql.Connection;
 import java.util.logging.Logger;
 
 import javax.ws.rs.GET;
@@ -8,10 +7,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import com.wovenware.akies.util.ConnectionUtil;
-
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
+
+import com.wovenware.akies.db.AkiesServicesDAO;
+import com.wovenware.akies.db.impl.AkiesServicesDAOImpl;
+import com.wovenware.akies.db.to.ScoreTO;
 
 @Path("/score")
 public class AkiEsRestApi {
@@ -22,16 +23,19 @@ public class AkiEsRestApi {
 	public Response printMessage(@PathParam("lon") String lon, @PathParam("lat") String lat) {
 		
 		JSONObject jsonObject = new JSONObject();
+		AkiesServicesDAO dao = null;
+		ScoreTO to = null;
 		
-		Connection conn = null;
 		
 		try
 		{
-			conn = ConnectionUtil.createConnection("jboss/datasources/MySQLDS", true);
 			
 			JSONArray jsonArray = new JSONArray();
 			
 			JSONObject jsonObjectDetail = null;
+			
+			dao = new AkiesServicesDAOImpl();
+			to = dao.getSchoolsScore(18.486639999999994, -66.97359599999999);
 			
 			// Police
 			jsonObjectDetail = new JSONObject();
@@ -44,8 +48,8 @@ public class AkiEsRestApi {
 			// Schools
 			jsonObjectDetail = new JSONObject();
 			jsonObjectDetail.put("detail", "school");
-			jsonObjectDetail.put("score", 40);
-			jsonObjectDetail.put("description", "School score description.");
+			jsonObjectDetail.put("score", to.getScore());
+			jsonObjectDetail.put("description", "School:" + to.getDetail() +  to.getDescription());
 			
 			jsonArray.add(jsonObjectDetail);
 			
@@ -63,24 +67,10 @@ public class AkiEsRestApi {
 		}
 		catch (Exception ex)
 		{
-			_log.severe("Failed to setup connection " + ex.getMessage());
+			_log.severe("Failed executing api: " + ex.getMessage());
 			
 			jsonObject.put("errorMessage", "An error has ocurred! Please try again later.");
 			jsonObject.put("errorDetails", ex.getMessage());
-		}
-		finally
-		{
-			try
-			{
-				if (conn != null && ! conn.isClosed())
-				{
-					conn.close();
-				}
-			}
-			catch (Exception ex)
-			{
-				_log.severe("Failed to close connection " + ex.getMessage());
-			}			
 		}
 		
 		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(jsonObject.toJSONString()).build();
