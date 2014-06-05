@@ -1,95 +1,39 @@
 package com.wovenware.akies.db.impl;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Types;
-import java.util.logging.Logger;
-
 import com.wovenware.akies.db.AkiesServicesDAO;
 import com.wovenware.akies.db.to.ScoreTO;
-import com.wovenware.akies.util.ConnectionUtil;
+import com.wovenware.akies.util.GenericProcedureUtil;
 
 public class AkiesServicesDAOImpl implements AkiesServicesDAO {
 
+	//Constants
+	private final String SCHOOL_PROC = "SP_GET_SCHOOL_SCORE";
+	private final String CRIME_PROC = "SP_GET_CRIME_SCORE";
+	private final String HOSP_PROC = "SP_GET_HOSP_SCORE";
 	
 	//Attributes
-	private Connection conn = null;
-	private Logger _log = Logger.getLogger(this.getClass().getName());
 	
 	//Constructor
 	public AkiesServicesDAOImpl(){}
 	
 	//Methods
 	@Override
-	public ScoreTO getCrimeScore(double latitude, double longitude) {
+	public ScoreTO getCrimeScore(double latitude, double longitude) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return GenericProcedureUtil.execAkiesProcedure(CRIME_PROC, latitude, longitude);
 	}
 
 	@Override
-	public ScoreTO getHospitalScore(double latitude, double longitude) {
+	public ScoreTO getHospitalScore(double latitude, double longitude)throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return GenericProcedureUtil.execAkiesProcedure(HOSP_PROC, latitude, longitude);
 	}
 
 	@Override
 	public ScoreTO getSchoolsScore(double latitude, double longitude) throws Exception {
 		
-		//Get Connection from JBOSS Connection pool using JNDI
-		conn = ConnectionUtil.createConnection("jboss/datasources/MySQLDS", true);
-		//boolean hadResults = false;
-		ScoreTO to = null;
-		
-		try
-		{
-		
-			//Create sql statement 
-			CallableStatement cStmt = conn.prepareCall("{call SP_GET_SCHOOL_SCORE(?, ?, ?)}");
-			//Set input params
-			cStmt.setDouble(1, latitude);
-			cStmt.setDouble(2, longitude);
-			
-			//Set output params
-			cStmt.registerOutParameter(3, Types.VARCHAR);
-			
-			//Execute statement
-			cStmt.execute();
-			//Get Results set
-			ResultSet rs = cStmt.getResultSet();
-		    // Process all returned result sets
-		    while (rs.next()) {
-		    	
-		        to = new ScoreTO();
-		        to.setScore(46); //Dummy
-		        to.setDetail(rs.getString(2)); //Testing DB
-		        to.setDescription(rs.getString(3)); //Testing DB
-
-		    }//end while
-		}//end try
-	    catch(Exception ex)
-	    {
-	    	_log.severe("Failed data access object: " + ex.getMessage());
-	    	throw ex;
-	    	
-	    }finally
-	    {
-	    	try
-			{
-				if (conn != null && ! conn.isClosed())
-				{
-					conn.close();
-				}
-			}
-			catch (Exception ex)
-			{
-				_log.severe("Failed to close connection " + ex.getMessage());
-			}			
-	    	
-	    }
-		
-		//If result is empty is going to return null
-		return to;
+		return GenericProcedureUtil.execAkiesProcedure(SCHOOL_PROC, latitude, longitude);
 	}
+	 
 
 }

@@ -6,11 +6,18 @@ public class ScoreTO {
 	private String description = null;
 	private String detail = null;
 	private int score = 0;
+	private String resultMessage = null;
 	
 		
 	//Setters and Getter
 	
 
+	public String getResultMessage() {
+		return resultMessage;
+	}
+	public void setResultMessage(String resultMessage) {
+		this.resultMessage = resultMessage;
+	}
 	public String getDescription() {
 		return description;
 	}

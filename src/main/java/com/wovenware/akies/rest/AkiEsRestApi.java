@@ -47,9 +47,9 @@ public class AkiEsRestApi {
 			
 			// Schools
 			jsonObjectDetail = new JSONObject();
-			jsonObjectDetail.put("detail", "school");
+			jsonObjectDetail.put("detail", to.getDetail());
 			jsonObjectDetail.put("score", to.getScore());
-			jsonObjectDetail.put("description", "School:" + to.getDetail() +  to.getDescription());
+			jsonObjectDetail.put("description", to.getDescription());
 			
 			jsonArray.add(jsonObjectDetail);
 			
