@@ -3,7 +3,7 @@
 	<head>
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
     	<title>Bootstrap 101 Template</title>
 
     	<!-- Bootstrap -->
@@ -19,7 +19,7 @@
     	
     	<style>
     		.top {
-    			background-image: url("img/puerto-rico.jpg");
+    			/*background-image: url("img/puerto-rico.jpg");
     			background-repeat: no-repeat;
     			background-position: top left;
 				background-size: cover;
@@ -27,7 +27,7 @@
 				-moz-background-size: cover !important;
 				-o-background-size: cover !important;
 				background-size: cover !important;
-				background-attachment: fixed !important;
+				background-attachment: fixed !important;*/
 				
     		}
     		
@@ -65,7 +65,11 @@
 
     	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="js/vendor/jquery-1.11.0.min.js"></script>
+    	<script src="js/vendor/jquery.backstretch.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="js/vendor/bootstrap.min.js"></script>
+    	<script>
+    	$.backstretch("http://dl.dropbox.com/u/515046/www/garfield-interior.jpg");
+    	</script>
   	</body>
 </html>
