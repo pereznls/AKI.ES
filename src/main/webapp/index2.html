@@ -9,6 +9,7 @@
     	<!-- Bootstrap -->
     	<link href="css/bootstrap.min.css" rel="stylesheet">
     	<link href="css/font.css" rel="stylesheet">
+    	<link href="css/animate+animo.css" rel="stylesheet">
 
     	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,6 +38,30 @@
     	</style>
   	</head>
   	<body>
+  		<nav id="topbar" class="navbar navbar-inverse navbar-fixed-top" style="display: none;" role="navigation">
+	  		<div class="container-fluid">
+	    		<!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+			    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        	<span class="sr-only">Toggle navigation</span>
+			        	<span class="icon-bar"></span>
+			        	<span class="icon-bar"></span>
+			        	<span class="icon-bar"></span>
+			      	</button>
+			    	<a class="navbar-brand" style="color: #fff; font-family: HelveticaNeueLT Pro 35 Th;" href="#"><img src="img/logo.png" style="height: 20px;">&nbsp;AKI<span style="color: #E15441;">.ES</span></a>
+			    </div>
+			    
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+    			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      				<ul class="nav navbar-nav">
+				        
+				    </ul>
+			      	<ul class="nav navbar-nav navbar-right">
+
+      				</ul>
+    			</div><!-- /.navbar-collapse -->
+	  		</div>
+		</nav>
   		<div class="container-fluid">
 	  		<div class="row">
 	  			<div class="col-xs-12 branding">
@@ -44,7 +69,7 @@
  					<h2>AKI<span style="color: #E15441;">.ES</span></h2>
 	  			</div>
 	  		</div>
-  		</div>
+	  	</div>
     	<h1 style="height: 1000px; margin: 0; background-color: #fff;">Hello, world!</h1>
 
     	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -52,8 +77,25 @@
     	<script src="js/vendor/jquery.backstretch.min.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="js/vendor/bootstrap.min.js"></script>
+    	<script src="js/vendor/animo.js"></script>
     	<script>
     	$.backstretch("img/puerto-rico.jpg");
+    	
+    	$('#topbar').animo( { animation: 'fadeIn' } );
+    	
+    	window.onscroll = function() {
+    		  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    		  if (scrollTop > 400) {
+    			  if(!$('#topbar').is(":visible")) {
+    				  $('#topbar').show();
+    				  $('#topbar').animo( { animation: 'fadeIn', duration: 0.5 } );
+    			  } 
+    		  } else if (scrollTop == 0) {
+    			  if($('#topbar').is(":visible")) {
+    				  $('#topbar').animo( { animation: 'fadeOut' }, function () { $('#topbar').hide() } );
+    			  } 
+    		  }
+    		};
     	</script>
   	</body>
 </html>
