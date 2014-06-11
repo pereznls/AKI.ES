@@ -57,7 +57,7 @@
 				        
 				    </ul>
 			      	<ul class="nav navbar-nav navbar-right">
-
+						<li><a href="http://www.wovenware.com" style="margin: 6px 15px; padding: 0;"><img src="img/ww_icon.png" style="height: 38px;"/></a></li>
       				</ul>
     			</div><!-- /.navbar-collapse -->
 	  		</div>
@@ -65,37 +65,93 @@
   		<div class="container-fluid">
 	  		<div class="row">
 	  			<div class="col-xs-12 branding">
- 					<img src="img/logo.png"/>
- 					<h2>AKI<span style="color: #E15441;">.ES</span></h2>
+ 					<img id="app-logo" src="img/logo.png"/>
+ 					<h2 id="app-name">AKI<span style="color: #E15441;">.ES</span></h2>
+	  			</div>
+	  		</div>
+	  		<div class="row" style="background-color: #f3f3f3; padding: 15px 0;">
+	  			<div class="col-xs-7 col-xs-offset-1">
+	  				<div style="margin: 15px 0; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;">
+	  					<div id="map"></div>
+	  				</div>
+	  			</div>
+	  			<div class="col-xs-3">
+	  				<h2>Hola!</h2>
+	  				<p style="text-align: justify;">AKI.ES es un nuevo servicio que provee un analisis de localizaci&oacute;n utilizando varios parametros de inter&eacute;s. Para comenzar, coloque un marcador en el mapa y presione <a href="#">Utilizar Marcador</a>.</p>
+	  				<a href="#" class="btn btn-lg btn-block btn-primary" style="border-radius: 0;" role="button">
+	  					Analizar Marcador
+	  				</a>
+	  				<p style="margin-top: 15px; text-align: justify;">Para analizar su localizaci&oacute;n actual presione <a href="#">Utilizar Localizaci&oacute;n Actual</a>.</p>
+	  				<a href="#" class="btn btn-lg btn-block btn-primary" style="border-radius: 0;" role="button">
+	  					Analizar Localizaci&oacute;n Actual
+	  				</a>
+	  			</div>
+	  		</div>
+	  		<div class="row" style="background-color: #fff;">
+	  			<div class="col-xs-10 col-xs-offset-1">
+	  				Tech Summit PR 2014 + Wovenware
+	  			</div>
+	  		</div>
+	  		<div class="row" style="background-color: rgba(1, 118, 165, 1);">
+	  			<div class="col-xs-10 col-xs-offset-1">
+	  				Footer goes here!
 	  			</div>
 	  		</div>
 	  	</div>
-    	<h1 style="height: 1000px; margin: 0; background-color: #fff;">Hello, world!</h1>
-
-    	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	  
     	<script src="js/vendor/jquery-1.11.0.min.js"></script>
     	<script src="js/vendor/jquery.backstretch.min.js"></script>
-    	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="js/vendor/bootstrap.min.js"></script>
     	<script src="js/vendor/animo.js"></script>
+    	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    	<script src="js/vendor/gmaps.js"></script>
     	<script>
-    	$.backstretch("img/puerto-rico.jpg");
-    	
-    	$('#topbar').animo( { animation: 'fadeIn' } );
-    	
-    	window.onscroll = function() {
-    		  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    		  if (scrollTop > 400) {
-    			  if(!$('#topbar').is(":visible")) {
-    				  $('#topbar').show();
-    				  $('#topbar').animo( { animation: 'fadeIn', duration: 0.5 } );
-    			  } 
-    		  } else if (scrollTop == 0) {
-    			  if($('#topbar').is(":visible")) {
-    				  $('#topbar').animo( { animation: 'fadeOut' }, function () { $('#topbar').hide() } );
-    			  } 
-    		  }
-    		};
+	    	$.backstretch("img/puerto-rico.jpg");
+	    	
+	    	$('#app-name').animo({animation: 'fadeIn'});
+	    	$('#app-logo').animo({animation: 'bounceInDown'});
+	    	
+	    	window.onscroll = function() {
+	    		  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+	    		  if (scrollTop > 350) {
+	    			  if(!$('#topbar').is(":visible")) {
+	    				  $('#topbar').show();
+	    				  $('#topbar').animo( { animation: 'fadeIn', duration: 0.5 } );
+	    			  } 
+	    		  } else if (scrollTop < 60) {
+	    			  if($('#topbar').is(":visible")) {
+	    				  $('#topbar').animo( { animation: 'fadeOut' }, function () { $('#topbar').hide() } );
+	    			  } 
+	    		  }
+	    		};
+	    		
+	    	var map = new GMaps({
+    	        el: '#map',
+    	        lat: 18.1987193,
+    	        lng: -66.3526747,
+    	        zoom: 9,
+    	        width: '100%',
+    	        height: '300px',
+    	        zoomControl : true,
+    	        zoomControlOpt: {
+    	            style : 'SMALL',
+    	            position: 'TOP_LEFT'
+    	        }
+    	      });
+    	    
+    	    GMaps.on('click', map.map, function(event) {
+    	        var index = map.markers.length;
+    	        var lat = event.latLng.lat();
+    	        var lng = event.latLng.lng();
+    	        
+    	        map.removeMarkers();
+
+    	        map.addMarker({
+    	          lat: lat,
+    	          lng: lng,
+    	          title: 'Marker #' + index
+    	        });
+    	      });
     	</script>
-  	</body>
+    </body>
 </html>
